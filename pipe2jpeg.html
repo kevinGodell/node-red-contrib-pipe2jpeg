@@ -1,0 +1,29 @@
+<script type="text/javascript">
+  RED.nodes.registerType('pipe2jpeg', {
+    align: 'right',
+    category: 'parser',
+    color: '#DEBD5C',
+    defaults: {
+      name: { value: '' },
+    },
+    icon: 'font-awesome/fa-file-image-o',
+    inputLabels: 'buffer',
+    inputs: 1,
+    label: () => {
+      return this.name || 'pipe2jpeg';
+    },
+    outputLabels: 'jpeg',
+    outputs: 1,
+  });
+</script>
+
+<script data-template-name="pipe2jpeg" type="text/html">
+  <div class="form-row">
+    <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
+    <input type="text" id="node-input-name" placeholder="Name">
+  </div>
+</script>
+
+<script data-help-name="pipe2jpeg" type="text/html">
+  <p>Parse jpegs from a buffer.</p>
+</script>

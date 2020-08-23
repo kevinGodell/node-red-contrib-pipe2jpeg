@@ -1,0 +1,45 @@
+{
+  "name": "node-red-contrib-pipe2jpeg",
+  "version": "0.1.0",
+  "description": "node-red wrapper for pipe2jpeg",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "pack": "npm pack",
+    "lint": "eslint --fix --ext .js --ignore-path .gitignore ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kevinGodell/node-red-contrib-pipe2jpeg.git"
+  },
+  "keywords": [
+    "node-red",
+    "buffer",
+    "jpeg",
+    "parser",
+    "ffmpeg"
+  ],
+  "author": "Kevin Godell <kevin.godell@gmail.com> (https://github.com/kevinGodell)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/kevinGodell/node-red-contrib-pipe2jpeg/issues"
+  },
+  "homepage": "https://github.com/kevinGodell/node-red-contrib-pipe2jpeg#readme",
+  "dependencies": {
+    "pipe2jpeg": "^0.3.1"
+  },
+  "files": [
+    "pipe2jpeg.js",
+    "pipe2jpeg.html"
+  ],
+  "node-red": {
+    "nodes": {
+      "pipe2jpeg": "pipe2jpeg.js"
+    }
+  },
+  "devDependencies": {
+    "eslint": "^7.7.0",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-plugin-prettier": "^3.1.4",
+    "prettier": "^2.0.5"
+  }
+}
