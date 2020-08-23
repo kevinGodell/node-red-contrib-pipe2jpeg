@@ -1,6 +1,6 @@
 # node-red-contrib-pipe2jpeg
 ######
-[![GitHub license](https://img.shields.io/badge/license-MIT-brightgreen.svg)](https://raw.githubusercontent.com/kevinGodell/node-red-contrib-pipe2jpeg/master/LICENSE?token=ABOPHYQ73XPHMEGBSABCDJK7IKRQO)
+[![GitHub license](https://img.shields.io/badge/license-MIT-brightgreen.svg)](https://github.com/kevinGodell/node-red-contrib-pipe2jpeg/blob/master/LICENSE)
 [![npm](https://img.shields.io/npm/dt/node-red-contrib-pipe2jpeg.svg?style=flat-square)](https://www.npmjs.com/package/node-red-contrib-pipe2jpeg)
 [![GitHub issues](https://img.shields.io/github/issues/kevinGodell/node-red-contrib-pipe2jpeg.svg)](https://github.com/kevinGodell/node-red-contrib-pipe2jpeg/issues)
 #### What?
