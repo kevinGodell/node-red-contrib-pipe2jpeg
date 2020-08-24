@@ -60,7 +60,7 @@ module.exports = function (RED) {
 
     this.on('close', onClose);
 
-    this.status({ fill: 'green', shape: 'ring', text: 'initialized' });
+    this.status({ fill: 'green', shape: 'ring', text: 'ready' });
   }
 
   RED.nodes.registerType('pipe2jpeg', Pipe2Jpeg);
