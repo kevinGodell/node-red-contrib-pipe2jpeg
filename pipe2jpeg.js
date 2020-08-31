@@ -1,44 +1,48 @@
 'use strict';
 
-const P2J = require('pipe2jpeg');
+const Pipe2Jpeg = require('pipe2jpeg');
 
 module.exports = function (RED) {
-  function Pipe2Jpeg(config) {
+  function Pipe2JpegNode(config) {
     RED.nodes.createNode(this, config);
 
-    const p2j = new P2J();
+    const pipe2jpeg = new Pipe2Jpeg();
+
+    let jpegCounter = 0;
 
     const onJpeg = jpeg => {
-      this.status({ fill: 'green', shape: 'dot', text: 'jpeg ok' });
+      this.status({ fill: 'green', shape: 'dot', text: `jpeg ${++jpegCounter}` });
 
       this.send({ payload: jpeg });
     };
 
     const onError = err => {
-      this.status({ fill: 'red', shape: 'dot', text: err });
+      this.status({ fill: 'red', shape: 'dot', text: err.toString() });
 
-      this.error(`pipe2jpeg: ${err}`);
+      this.error(err);
     };
 
     const onInput = msg => {
       const { payload } = msg;
 
       if (Buffer.isBuffer(payload) === true) {
-        return p2j.write(payload);
+        return pipe2jpeg.write(payload);
       }
 
-      this.status({ fill: 'red', shape: 'dot', text: 'input error' });
+      const err = 'input must be a buffer';
 
-      this.error('pipe2jpeg: input must be a buffer');
+      this.status({ fill: 'red', shape: 'dot', text: err });
+
+      this.error(err);
     };
 
     const onClose = (removed, done) => {
-      p2j.resetCache();
+      pipe2jpeg.resetCache();
 
       if (removed) {
-        p2j.off('jpeg', onJpeg);
+        pipe2jpeg.off('jpeg', onJpeg);
 
-        p2j.off('error', onError);
+        pipe2jpeg.off('error', onError);
 
         this.off('input', onInput);
 
@@ -49,12 +53,12 @@ module.exports = function (RED) {
         this.status({ fill: 'red', shape: 'dot', text: 'closed' });
       }
 
-      done && done();
+      done();
     };
 
-    p2j.on('jpeg', onJpeg);
+    pipe2jpeg.on('jpeg', onJpeg);
 
-    p2j.on('error', onError);
+    pipe2jpeg.on('error', onError);
 
     this.on('input', onInput);
 
@@ -63,5 +67,5 @@ module.exports = function (RED) {
     this.status({ fill: 'green', shape: 'ring', text: 'ready' });
   }
 
-  RED.nodes.registerType('pipe2jpeg', Pipe2Jpeg);
+  RED.nodes.registerType('pipe2jpeg', Pipe2JpegNode);
 };
