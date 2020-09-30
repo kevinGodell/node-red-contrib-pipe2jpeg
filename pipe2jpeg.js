@@ -10,10 +10,14 @@ module.exports = function (RED) {
 
     let jpegCounter = 0;
 
+    let receivedMsg;
+
     const onJpeg = jpeg => {
       this.status({ fill: 'green', shape: 'dot', text: `jpeg ${++jpegCounter}` });
 
-      this.send({ payload: jpeg });
+      receivedMsg.payload = jpeg;
+
+      this.send(receivedMsg);
     };
 
     const onError = err => {
@@ -26,6 +30,7 @@ module.exports = function (RED) {
       const { payload } = msg;
 
       if (Buffer.isBuffer(payload) === true) {
+        receivedMsg = msg;
         return pipe2jpeg.write(payload);
       }
 
